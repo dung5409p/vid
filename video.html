@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Phát video với âm thanh và toàn màn hình</title>
+    <style>
+      body {
+        margin: 0;
+        background: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      video {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <video id="myVideo" controls>
+      <source src="video.mp4" type="video/mp4" />
+      Trình duyệt của bạn không hỗ trợ thẻ video.
+    </video>
+
+    <script>
+      const video = document.getElementById("myVideo");
+
+      // Bật âm thanh (mặc định video có âm thanh, chỉ cần đảm bảo không có muted)
+      video.muted = false;
+
+      // Tự động chuyển sang toàn màn hình khi phát
+      video.addEventListener("play", () => {
+        if (video.requestFullscreen) {
+          video.requestFullscreen();
+        } else if (video.webkitRequestFullscreen) {
+          // Safari
+          video.webkitRequestFullscreen();
+        } else if (video.msRequestFullscreen) {
+          // IE/Edge
+          video.msRequestFullscreen();
+        }
+      });
+    </script>
+  </body>
+</html>
